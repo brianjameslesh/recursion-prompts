@@ -25,26 +25,6 @@ var factorial = function(n) {
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
-    // var result = 0;
-    // array.forEach(function(item) {
-    //     result += item;
-    // })
-    // return result;
-
-    // var results = 0;
-    // var innerFunction = function(item) {
-    //     if(!Array.isArray(item)) {
-    //         results = results + item;
-    //     }else {
-    //         item.forEach(function(number) {
-    //             innerFunction(number);
-    //         })
-    //     }
-    // };
-
-    // innerFunction(array);
-    // return results;
-
 
     var results = 0;
 
@@ -54,8 +34,7 @@ var sum = function(array) {
         array.forEach(function(number) {
             results += sum(number);
         })
-    }
-
+    };
 
     return results;
 
@@ -64,10 +43,44 @@ var sum = function(array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+    var results = 0;
+    
+    if(!Array.isArray(array)) {
+        return array;
+    }
+    else {
+        array.forEach(function(item) {
+            results += arraySum(item) 
+        })
+    };
+
+    return results;
 };
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+// var trueFalse;
+//     if(Number.isInteger(n/2)) {
+//         trueFalse = true;
+//     } else {
+//         trueFalse = !(isEven(n-1));
+//     }
+
+// return trueFalse
+    var trueFalse;
+
+    if(!Number.isNaN(n)) {
+        if(Number.isInteger(n/2)) {
+            trueFalse = true;
+        } else {
+            trueFalse = false;
+        }
+    } else {
+        isEven(parseInt(n));
+    }
+
+
+    return trueFalse;
 };
 
 // 5. Sum all integers below a given integer.
