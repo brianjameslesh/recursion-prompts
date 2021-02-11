@@ -103,16 +103,18 @@ var sumBelow = function(n) {
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
-    // var rangeArray = [];
+    var rangeArray = [];
 
-    // if(x+1 === y) {
-    //     return x;
-    // }
-    // rangeArray.push((range(x+1,y)));
-
+    if(x+1 === y) {
+        return rangeArray;
+    }
 
 
-    // return rangeArray;
+    rangeArray.push((range(x+1,y)));
+
+
+
+    return rangeArray;
 
 };
 
@@ -257,9 +259,26 @@ var countKeysInObj = function(obj, key) {
 
 // 23. Write a function that counts the number of times a value occurs in an object.
 // var obj = {'e':{'x':'y'},'t':{'r':{'e':'r'},'p':{'y':'r'}},'y':'e'};
+// console.log(Object.values(obj))
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+    var arrayValues = [];
+     Object.values(obj).forEach(function(item) {
+         if(typeof item === 'object') {
+             countValuesInObj(item, value)
+         } else {
+            if(item === value) {
+                arrayValues.push(item)
+               console.log(arrayValues)
+            }
+
+         }
+     })
+
+
+     return arrayValues.length;
+
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
