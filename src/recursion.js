@@ -102,19 +102,42 @@ var sumBelow = function(n) {
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
+// range (2,5); // [3,4]
+//range(2,4); // [3]
+//range (5,2); // [4,3,2]
 var range = function(x, y) {
-    var rangeArray = [];
 
-    if(x+1 === y) {
-        return rangeArray;
+    if(x + 1 === y) {
+        return [];
+    }
+    if(x === y) {
+        return [];
+    }
+    if(x + 2 === y) {
+        return [x+1];
+    } else {
+        if(x < y) {
+            var rangeArray = range(x+1,y);
+            rangeArray.push(x+1);
+            return rangeArray.sort(function(a,b) {
+                return a-b;
+            })
+        }
+        if(x > y) {
+            if(x-1 === y) {
+                return [];
+            }
+            var rangeArray = range(x-1,y);
+            rangeArray.push(x-1);
+            return rangeArray.sort(function(a,b) {
+                return b-a;
+            });
+        }
+     
     }
 
+    
 
-    rangeArray.push((range(x+1,y)));
-
-
-
-    return rangeArray;
 
 };
 
